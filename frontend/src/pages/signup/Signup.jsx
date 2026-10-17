@@ -7,6 +7,7 @@ const SignUp = () => {
   const [inputs,setInputs]=useState({
     fullName:"",
     username:"",
+    email:"",
     password:"",
     confirmPassword:"",
     gender:"",
@@ -28,7 +29,7 @@ const SignUp = () => {
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 founded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
         <h1 className='text-3xl font-semibold text-center text-gray-300'>Sign Up
-          <span className='text-blue-500'> ChatApp</span>
+          <span className='text-blue-500'> ChatterBox </span>
         </h1>
 
         <form onSubmit={handleSubmit}>
@@ -50,6 +51,16 @@ const SignUp = () => {
                       type="text" placeholder="Enter Username" className="w-full input input-bordered h-10"
                       value={inputs.username}
                       onChange={(e) => setInputs({...inputs , username: e.target.value})}
+                    />
+                </div>
+                <div>
+                    <label className="label p-2">
+                        <span className="text-base label-text">Email</span>
+                    </label>
+                    <input 
+                      type="email" placeholder="Enter Email Address" className="w-full input input-bordered h-10"
+                      value={inputs.email}
+                      onChange={(e) => setInputs({...inputs , email: e.target.value})}
                     />
                 </div>
                 <div>

@@ -18,7 +18,7 @@ const Login = () => {
     <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
         <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
             <h1 className='text-3xl font-semibold text-center text-gray-300'>Login
-                <span className='text-blue-500'> ChatApp</span>
+                <span className='text-blue-500'> ChatterBox </span>
             </h1>
 
             <form onSubmit={handleSubmit}>
@@ -40,9 +40,9 @@ const Login = () => {
                         onChange={(e)=>setPassword(e.target.value)}
                     />
                 </div>
-                
-                <Link to={"/signup"} className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
-                    {"Don't"} have an account?
+
+                <Link to={"/forgot"} className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
+                    Forgot Password?
                 </Link>
 
                 <div>
@@ -50,6 +50,9 @@ const Login = () => {
                         {loading ? <span className="loading loading-spinner"></span> : "Login"}
                     </button>
                 </div>
+                <Link to={"/signup"} className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
+                    {"Don't"} have an account?
+                </Link>
             </form>
         </div>
     </div>

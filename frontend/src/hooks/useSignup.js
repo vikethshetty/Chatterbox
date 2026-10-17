@@ -6,8 +6,8 @@ const useSignup = () => {
   const [loading,setLoading] = useState(false);
   const {setAuthUser}=useAuthContext();
   
-  const signup= async({fullName,username,password,confirmPassword,gender}) => {
-    const success = handleInputErrors({fullName,username,password,confirmPassword,gender})
+  const signup= async({fullName,username,email,password,confirmPassword,gender}) => {
+    const success = handleInputErrors({fullName,username,email,password,confirmPassword,gender})
     if(!success) return;
 
     setLoading(true);
@@ -20,6 +20,7 @@ const useSignup = () => {
             body: JSON.stringify({
                 fullName,
                 username,
+                email,
                 password,
                 confirmPassword,
                 gender
@@ -27,10 +28,18 @@ const useSignup = () => {
         });
         
         const data = await res.json();
+        
+        //Error Handling
+        if (res.status === 800) {
+          // Username already exists
+          throw new Error("User or Email already exists");
+        }
+        
         if(data.error){
           throw new Error(data.error);
         }
-        console.log(data);
+        
+        //console.log(data);
         
         //Local Storage
         localStorage.setItem("user-info",JSON.stringify(data));
@@ -49,8 +58,8 @@ const useSignup = () => {
 
 export default useSignup;
 
-function handleInputErrors({fullName,username,password,confirmPassword,gender}) {
-  if(!fullName || !username || !password || !confirmPassword || !gender){
+function handleInputErrors({fullName,username,email,password,confirmPassword,gender}) {
+  if(!fullName || !username || !email || !password || !confirmPassword || !gender){
     toast.error("Please fill all the fields");
     return false;
   } 

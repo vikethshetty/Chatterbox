@@ -10,6 +10,11 @@ const userSchema=new Mongoose.Schema({
         required:true,
         unique:true,
     },
+    email:{
+        type:String,
+        required:true,
+        unique:true,
+    },
     password:{
         type:String,
         required:true,
@@ -21,6 +26,10 @@ const userSchema=new Mongoose.Schema({
         enum:["male","female"],
     },
     profilePic:{
+        type:String,
+        default:"",
+    },
+    token:{
         type:String,
         default:"",
     },
