@@ -1,5 +1,6 @@
 import { useSocketContext } from "../../context/SocketContext";
 import useConversation from "../../zustand/useConversation";
+import ProfileAvatar from "../ProfileAvatar";
 
 
 const Conversation = ({conversation,lastIdx,emoji}) => {
@@ -19,9 +20,10 @@ const Conversation = ({conversation,lastIdx,emoji}) => {
             >
             <div className={`avatar ${isOnline ? "online" : ""}`}>
                 <div className="w-12 rounded-full">
-                    <img 
-                        src={conversation.profilePic} 
-                        alt="user avatar" 
+                    <ProfileAvatar
+                        profilePic={conversation.profilePic}
+                        gender={conversation.gender}
+                        alt={`${conversation.fullName}'s avatar`}
                     />
                 </div>
             </div>

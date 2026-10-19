@@ -98,9 +98,7 @@ export const signup=async(req,res)=>{
         const hashedPassword=await bcrypt.hash(password,salt);
         // https://avatar-placeholder.iran.liara.run/
 
-        const boyProfilePic=`https://avatar.iran.liara.run/public/boy?username=${username}`;
-        const girlProfilePic=`https://avatar.iran.liara.run/public/girl?username=${username}`;
-        //const profilePic=`https://eu.ui-avatars.com/api/?name=${username}&size=200`;
+        const profilePic = gender === "male" ? "/avatars/male.svg" : "/avatars/female.svg";
 
         const newUser=new User({
             fullName,
@@ -108,7 +106,7 @@ export const signup=async(req,res)=>{
             email,
             password:hashedPassword,
             gender,
-            profilePic: gender==="male"? boyProfilePic : girlProfilePic
+            profilePic
         });
 
         if(newUser){
@@ -147,6 +145,7 @@ export const login=async(req,res)=>{
             _id:user._id,
             fullName:user.fullName,
             username:user.username,
+            gender:user.gender,
             profilePic:user.profilePic,
         });
 

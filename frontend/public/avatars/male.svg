@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Male profile avatar">
+  <rect width="128" height="128" rx="64" fill="#bfdbfe"/>
+  <path d="M18 122c4-26 21-40 46-40s42 14 46 40" fill="#2563eb"/>
+  <path d="M39 53c0-22 10-35 26-35 18 0 27 13 27 35v10c0 22-12 35-28 35S39 85 39 63z" fill="#f2bf98"/>
+  <path d="M37 56c-5-28 9-43 29-43 22 0 34 15 28 43-6-3-10-11-11-19-11 9-25 13-45 13z" fill="#334155"/>
+  <path d="M51 67h2m22 0h2" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+  <path d="M56 82c5 4 11 4 16 0" fill="none" stroke="#9a5548" stroke-width="3" stroke-linecap="round"/>
+</svg>
