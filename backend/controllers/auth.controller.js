@@ -18,7 +18,8 @@ const sendResetPasswordMail = async (name,email,token) => {
             "'": "&#39;",
         })[character]);
         const safeName = escapeHtml(name || "there");
-        const resetUrl = `http://localhost:3000/reset/${token}`;
+        const frontendUrl = (process.env.FRONTEND_URL || "https://chatterbox-theta-inky.vercel.app").replace(/\/$/, "");
+        const resetUrl = `${frontendUrl}/reset/${token}`;
         const safeResetUrl = escapeHtml(resetUrl);
 
         const transporter = nodeMailer.createTransport({
