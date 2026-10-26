@@ -10,6 +10,17 @@ dotenv.config();
 
 const sendResetPasswordMail = async (name,email,token) => {
     try {
+        const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (character) => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+        })[character]);
+        const safeName = escapeHtml(name || "there");
+        const resetUrl = `http://localhost:3000/reset/${token}`;
+        const safeResetUrl = escapeHtml(resetUrl);
+
         const transporter = nodeMailer.createTransport({
             service: "gmail",
             host: "smtp.gmail.com",
@@ -28,32 +39,54 @@ const sendResetPasswordMail = async (name,email,token) => {
                 address:process.env.USER
             },
             to: email,
-            subject: "Reset Password",
+            subject: "Reset your ChatterBox password",
+            text: `Hi ${name || "there"},\n\nWe received a request to reset your ChatterBox password. Use this link to choose a new password:\n${resetUrl}\n\nIf you didn't request a password reset, you can ignore this email. Your password will remain unchanged.`,
             html: `
-            <div style="max-width: 700px;
-            margin:auto;
-            border: 10px solid #ddd
-            ">
-            <div style="
-            padding: 50px 20px;
-            font-size: 20px;
-            line-height: 40px;
-                ">
-            <h2 style="
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            ">
-            Hi ${name} you have
-            requested to reset your password
-            </h2>
-            <p>
-            Please click following link
-            <a href="http://localhost:3000/reset/${token}">Reset Password</a>
-            </p>
-            </div>
-            </div>
-            `
-            
+                <!doctype html>
+                <html lang="en">
+                  <body style="margin:0;padding:0;background-color:#f1f5f9;font-family:Arial,Helvetica,sans-serif;color:#0f172a;">
+                    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
+                      Use this secure link to reset your ChatterBox password.
+                    </div>
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f1f5f9;padding:32px 12px;">
+                      <tr>
+                        <td align="center">
+                          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:560px;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
+                            <tr>
+                              <td style="padding:24px 32px;background-color:#0f172a;color:#ffffff;">
+                                <div style="font-size:20px;font-weight:700;letter-spacing:0.2px;">ChatterBox</div>
+                                <div style="margin-top:5px;font-size:12px;color:#bae6fd;">ACCOUNT SECURITY</div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:32px;">
+                                <h1 style="margin:0 0 20px;font-size:24px;line-height:1.3;color:#0f172a;">Reset your password</h1>
+                                <p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#334155;">Hi ${safeName},</p>
+                                <p style="margin:0 0 24px;font-size:15px;line-height:1.7;color:#334155;">We received a request to reset the password for your ChatterBox account. Use the button below to choose a new password.</p>
+                                <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 24px;">
+                                  <tr>
+                                    <td align="center" style="border-radius:8px;background-color:#0284c7;">
+                                      <a href="${safeResetUrl}" style="display:inline-block;padding:13px 22px;border:1px solid #0284c7;border-radius:8px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;">Reset password</a>
+                                    </td>
+                                  </tr>
+                                </table>
+                                <p style="margin:0 0 8px;font-size:13px;line-height:1.6;color:#64748b;">If the button doesn't work, copy and paste this link into your browser:</p>
+                                <p style="margin:0 0 24px;font-size:13px;line-height:1.6;word-break:break-all;"><a href="${safeResetUrl}" style="color:#0284c7;">${safeResetUrl}</a></p>
+                                <p style="margin:0;font-size:13px;line-height:1.6;color:#64748b;">If you didn't request a password reset, you can ignore this email. Your password will remain unchanged.</p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding:18px 32px;border-top:1px solid #e2e8f0;font-size:12px;line-height:1.5;color:#94a3b8;">
+                                This is an automated message from ChatterBox. Please don't reply to this email.
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </body>
+                </html>
+            `,
         }
 
         transporter.sendMail(mailOptions,function(error,info){
