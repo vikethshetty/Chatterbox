@@ -17,43 +17,22 @@ const Login = () => {
 
 
   return (
-    <main className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-slate-950/75 shadow-2xl shadow-slate-950/50 backdrop-blur-xl md:grid md:grid-cols-2">
-      <section className="relative flex min-h-52 flex-col justify-between overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 p-6 text-white sm:p-9 md:min-h-[590px] md:p-12">
-        <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-cyan-300/20 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-indigo-300/20 blur-3xl" />
+    <main className="relative mx-auto w-full max-w-md overflow-hidden rounded-3xl border border-white/15 bg-slate-950/85 px-6 py-8 shadow-2xl shadow-slate-950/50 backdrop-blur-2xl sm:px-10 sm:py-10">
+      <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-blue-500/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-20 h-48 w-48 rounded-full bg-cyan-400/10 blur-3xl" />
 
-        <div className="relative z-10 flex items-center gap-3">
-          <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/20 bg-white/15 shadow-lg backdrop-blur">
-            <FiMessageCircle className="text-2xl" />
-          </div>
-          <span className="text-xl font-bold tracking-tight">ChatterBox</span>
+      <section className="relative z-10">
+        <header className="mb-9 flex items-center justify-center gap-3">
+          <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 text-white shadow-lg shadow-blue-900/40">
+            <FiMessageCircle className="text-xl" />
+          </span>
+          <span className="text-xl font-bold tracking-tight text-white">ChatterBox</span>
+        </header>
+
+        <div className="mb-7 text-center">
+          <h1 className="text-3xl font-bold tracking-tight text-white">Sign in</h1>
+          <p className="mt-2 text-sm text-slate-400">Welcome back</p>
         </div>
-
-        <div className="relative z-10 my-8 md:my-0">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">Your people, one place</p>
-          <h1 className="max-w-md text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-            Good conversations start here.
-          </h1>
-          <p className="mt-4 max-w-sm text-sm leading-6 text-blue-100 sm:text-base">
-            Sign in to catch up, share a moment, and stay close to the people who matter.
-          </p>
-        </div>
-
-        <div className="relative z-10 hidden items-center gap-3 text-sm text-blue-100 md:flex">
-          <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]" />
-          Simple, real-time conversations
-        </div>
-      </section>
-
-      <section className="flex items-center p-6 sm:p-10 md:p-12">
-        <div className="mx-auto w-full max-w-md">
-          <div className="mb-8">
-            <span className="inline-flex items-center rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-200">
-              Welcome back
-            </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-white">Sign in</h2>
-            <p className="mt-2 text-sm text-slate-400">Enter your account details to continue.</p>
-          </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
@@ -116,7 +95,6 @@ const Login = () => {
               Create an account
             </Link>
           </p>
-        </div>
       </section>
     </main>
   );
