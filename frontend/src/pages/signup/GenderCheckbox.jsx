@@ -1,53 +1,29 @@
-
-
-const GenderCheckbox = ({onCheckboxChange,selectedGender}) => {
-  return (
-    <div className="flex">
-        <div className="form-control">
-            <label className={`label gap-2 cursor-pointer ${selectedGender==="male" ? "selected" : ""}`}>
-                <span className="label-text">Male</span>
-                <input type="checkbox" className="checkbox border-slate-900" 
-                    checked={selectedGender === "male"}
-                    onChange={()=>onCheckboxChange("male")}
-                />
-            </label>
-        </div>
-        <div className="form-control">
-            <label className={`label gap-2 cursor-pointer ${selectedGender==="female" ? "selected" : ""}`}>
-                <span className="label-text">Female</span>
-                <input type="checkbox" className="checkbox border-slate-900" 
-                    checked={selectedGender === "female"}
-                    onChange={()=>onCheckboxChange("female")}   
-                />
-            </label>
-        </div>
+const GenderCheckbox = ({ onCheckboxChange, selectedGender }) => (
+  <fieldset>
+    <legend className="mb-1.5 text-xs font-semibold tracking-wide text-slate-300">GENDER</legend>
+    <div className="flex gap-3">
+      {["male", "female"].map((gender) => (
+        <label
+          key={gender}
+          className={`flex min-h-11 flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm capitalize transition ${
+            selectedGender === gender
+              ? "border-cyan-300/50 bg-cyan-300/10 text-white shadow-[inset_0_0_0_1px_rgba(103,232,249,0.08)]"
+              : "border-white/10 bg-slate-900/70 text-slate-300 hover:border-white/25"
+          }`}
+        >
+          <input
+            type="radio"
+            name="gender"
+            value={gender}
+            className="h-4 w-4 accent-cyan-400"
+            checked={selectedGender === gender}
+            onChange={() => onCheckboxChange(gender)}
+          />
+          {gender}
+        </label>
+      ))}
     </div>
-  )
-}
+  </fieldset>
+);
 
-export default GenderCheckbox
-
-/*
-Starter code
-
-const GenderCheckbox = () => {
-  return (
-    <div className="flex">
-        <div className="form-control">
-            <label className={`label gap-2 cursor-pointer`}>
-                <span className="label-text">Male</span>
-                <input type="checkbox" className="checkbox border-slate-900" />
-            </label>
-        </div>
-        <div className="form-control">
-            <label className={`label gap-2 cursor-pointer`}>
-                <span className="label-text">Female</span>
-                <input type="checkbox" className="checkbox border-slate-900" />
-            </label>
-        </div>
-    </div>
-  )
-}
-
-export default GenderCheckbox
-*/
+export default GenderCheckbox;
