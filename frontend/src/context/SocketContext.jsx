@@ -3,7 +3,7 @@ import { useAuthContext } from "./AuthContext";
 import io from "socket.io-client";
 //import Notification from "../components/messages/Notification";
 
-const socketServerUrl = import.meta.env.VITE_SOCKET_URL ||
+    const socketServerUrl = import.meta.env.VITE_SOCKET_URL ||
     (import.meta.env.DEV ? "http://localhost:5000" : "https://chatterbox-4u22.onrender.com");
 
 const SocketContext = createContext();

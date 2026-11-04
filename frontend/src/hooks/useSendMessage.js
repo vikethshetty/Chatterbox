@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import useConversation from "../zustand/useConversation";
 import { useState } from "react";
+import sentMessageSound from "../assets/sounds/floraphonic-happy-pop-2-185287.mp3";
 
 const useSendMessage = () => {
   const [loading,setLoading] = useState(false);
@@ -21,6 +22,8 @@ const useSendMessage = () => {
             throw new Error(data.error);
         }
         setMessages([...messages,data]);
+        const sound = new Audio(sentMessageSound);
+        sound.play().catch(() => {});
         toast.success("Message sent successfully");
         
     } catch (error) {
