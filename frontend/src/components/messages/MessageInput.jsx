@@ -29,8 +29,8 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="px-4 my-3">
-      <div className="w-full relative">
+    <div className="px-4 pb-4 pt-2 sm:px-5 sm:pb-5">
+      <div className="relative w-full">
         {showEmoji && (
           <div className="absolute bottom-full right-0 z-50 mb-2">
             <Picker
@@ -44,28 +44,28 @@ const MessageInput = () => {
           </div>
         )}
         <form onSubmit={handleSubmit}>
-          <div className="absolute bottom-3 right-3 flex items-center">
+          <div className="absolute inset-y-0 right-2 flex items-center gap-1">
             <button
               type="button"
               aria-label="Choose emoji"
               aria-expanded={showEmoji}
               onClick={() => setShowEmoji((isOpen) => !isOpen)}
-              className="mr-2"
+              className="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-cyan-200"
             >
               <BsEmojiSmile />
             </button>
-            <label className="mr-2 cursor-pointer" aria-label="Attach a file">
+            <label className="grid h-9 w-9 cursor-pointer place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-cyan-200" aria-label="Attach a file">
               <input type="file" id="file" className="hidden" onChange={(e) => sendFile(e.target.files)} />
               <GrAttachment />
             </label>
-            <button type="submit" className="flex items-center" aria-label="Send message" disabled={loading}>
-              {loading ? <div className="loading loading-spinner" /> : <BsSend />}
+            <button type="submit" className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 text-slate-950 transition hover:brightness-110 disabled:opacity-50" aria-label="Send message" disabled={loading || !message.trim()}>
+              {loading ? <span className="loading loading-spinner loading-xs" /> : <BsSend />}
             </button>
           </div>
           <input
             type="text"
-            className="border text-sm rounded-lg block w-full p-2.5 pr-24 bg-gray-700 border-gray-600 text-white"
-            placeholder="Send a message"
+            className="block h-12 w-full rounded-2xl border border-white/10 bg-slate-900/85 py-2.5 pl-4 pr-32 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/10"
+            placeholder="Write a message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
