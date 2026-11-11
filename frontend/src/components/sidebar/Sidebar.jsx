@@ -1,42 +1,26 @@
+import { FiMessageCircle } from "react-icons/fi";
 import Conversations from "./Conversations";
 import SearchInput from "./SearchInput";
 import LogoutButton from "./LogoutButton";
 
-const Sidebar = () => {
-  return (
-    <aside className="flex w-[min(36%,320px)] min-w-[250px] shrink-0 flex-col border-r border-white/10 bg-slate-950/45 p-4 sm:p-5">
-        <div className="mb-5">
-          <h1 className="mb-4 text-lg font-semibold tracking-tight text-white">Messages</h1>
-          <SearchInput />
-        </div>
-        <div className="mb-3 border-t border-white/10" />
-        <Conversations />
-        <LogoutButton />
-    </aside>
-  )
-}
+const Sidebar = ({ className = "" }) => (
+  <aside className={`flex w-full min-w-0 shrink-0 flex-col border-r border-[#e5ddce] bg-[#FFFBF4] p-4 sm:w-[300px] sm:p-5 ${className}`}>
+    <header className="mb-7 flex items-center gap-2.5">
+      <span className="grid h-9 w-9 place-items-center rounded-xl bg-[#11120D] text-[#FFFBF4]">
+        <FiMessageCircle className="text-lg" />
+      </span>
+      <span className="text-[17px] font-bold tracking-[-.04em] text-[#11120D]">ChatterBox</span>
+    </header>
 
-export default Sidebar;
-
-/*
-Starter Code
-
-import Conversations from "./Conversations";
-import SearchInput from "./SearchInput";
-import LogoutButton from "./LogoutButton";
-
-const Sidebar = () => {
-  return (
-    <div className="border-r border-slate-500 p-4 flex flex-col">
-        <SearchInput />
-        <div className="divider px-3"></div>
-        <Conversations />
-        <LogoutButton />
-        
+    <div className="mb-3 flex items-center justify-between">
+      <h1 className="text-sm font-semibold text-[#11120D]">Messages</h1>
+      <span className="text-xs text-[#777466]">Inbox</span>
     </div>
-  )
-}
+    <SearchInput />
+    <div className="mb-2 mt-5 border-t border-[#e5ddce]" />
+    <Conversations />
+    <LogoutButton />
+  </aside>
+);
 
 export default Sidebar;
-
-*/

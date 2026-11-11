@@ -1,53 +1,36 @@
-import { Link } from "react-router-dom"
-import { useState } from "react"
-import  useResetPassword  from "../../hooks/useResetPassword"
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import AuthLayout from "../../components/auth/AuthLayout";
+import useResetPassword from "../../hooks/useResetPassword";
 
 const ForgotPassword = () => {
-    //const[username,setUsername] = useState("");
-    const [email,setEmail] = useState("");
+  const [email, setEmail] = useState("");
+  const { loading, reset } = useResetPassword();
 
-    const {loading,reset}=useResetPassword()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await reset(email);
+    setEmail("");
+    setTimeout(() => { window.location.href = "/login"; }, 2000);
+  };
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        await reset(email);
-        setEmail("");
-        setTimeout(() => {
-            window.location.href = "/login";
-        }, 2000);
-        //redirect(<Login />);
-    }
-
-    return (
-    <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
-        <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-            <h1 className='text-3xl font-semibold text-center text-gray-300'>Forgot
-                <span className='text-blue-500'> Password </span>
-            </h1>
-
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label className="label p-2">
-                        <span className="text-base label-text">Email</span>
-                    </label>
-                    <input type="email" placeholder="Enter email" className="w-full input input-bordered h-10"
-                        value={email}
-                        onChange={(e)=>setEmail(e.target.value)}
-                    />
-                </div>
-                <Link to={"/signup"} className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block">
-                    {"Don't"} have an account?
-                </Link>
-                <div>
-                    <button className="btn btn-block btn-sm mt-2" disabled={loading}>
-                        {loading ? <span className="loading loading-spinner"></span> : "Submit"}
-                    </button>
-                </div>
-            </form>
+  return (
+    <AuthLayout
+      title="Forgot password"
+      description="Enter the email linked to your account."
+      footer={<>Remembered your password? <Link to="/login" className="auth-link ml-1">Sign in</Link></>}
+    >
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label htmlFor="forgot-email" className="auth-label">Email address</label>
+          <input id="forgot-email" type="email" autoComplete="email" placeholder="name@example.com" className="auth-input" value={email} onChange={(event) => setEmail(event.target.value)} required />
         </div>
-    </div>
+        <button type="submit" className="auth-submit" disabled={loading}>
+          {loading ? <span className="loading loading-spinner loading-sm" /> : "Send reset link"}
+        </button>
+      </form>
+    </AuthLayout>
+  );
+};
 
-  )
-}
-
-export default ForgotPassword
+export default ForgotPassword;

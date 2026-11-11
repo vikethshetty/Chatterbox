@@ -1,58 +1,41 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import AuthLayout from "../../components/auth/AuthLayout";
 import useReset from "../../hooks/useReset";
 
-
 const ResetPassword = () => {
-    const {loading,reset} = useReset();
+  const { loading, reset } = useReset();
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-    const [password,setPassword] = useState("");
-    const [confirmPassword,setConfirmPassword] = useState("");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await reset(password, confirmPassword);
+    setPassword("");
+    setConfirmPassword("");
+  };
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        await reset(password,confirmPassword);
-        setPassword("");
-        setConfirmPassword("");
-        
-    }
-  
-    return (
-    <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-      <div className="w-full p-6 founded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
-        <h1 className='text-3xl font-semibold text-center text-gray-300'>Reset
-          <span className='text-blue-500'> Password </span>
-        </h1>
+  return (
+    <AuthLayout
+      title="Choose a new password"
+      description="Use a password you have not used here before."
+      footer={<>Back to <Link to="/login" className="auth-link ml-1">sign in</Link></>}
+    >
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label htmlFor="reset-password" className="auth-label">New password</label>
+          <input id="reset-password" type="password" autoComplete="new-password" placeholder="New password" className="auth-input" value={password} onChange={(event) => setPassword(event.target.value)} required />
+        </div>
+        <div>
+          <label htmlFor="reset-confirm-password" className="auth-label">Confirm new password</label>
+          <input id="reset-confirm-password" type="password" autoComplete="new-password" placeholder="Enter it again" className="auth-input" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} required />
+        </div>
+        <button type="submit" className="auth-submit" disabled={loading}>
+          {loading ? <span className="loading loading-spinner loading-sm" /> : "Update password"}
+        </button>
+      </form>
+    </AuthLayout>
+  );
+};
 
-        <form onSubmit={handleSubmit}>
-                <div>
-                    <label className="label p-2">
-                        <span className="text-base label-text">Password</span>
-                    </label>
-                    <input 
-                      type="password" placeholder="Enter password" className="w-full input input-bordered h-10"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label className="label p-2">
-                        <span className="text-base label-text">Confirm Password</span>
-                    </label>
-                    <input 
-                      type="password" placeholder="Confirm Your password" className="w-full input input-bordered h-10"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </div><br></br>
-                <div>
-                  <button className="btn btn-block btn-sm mt-2" disabled={loading}>
-                    {loading ? <span className="loading loading-spinner"></span> : "Reset"}
-                  </button>
-                </div>
-            </form>
-      </div>
-    </div>
-  )
-}
-
-export default ResetPassword
+export default ResetPassword;

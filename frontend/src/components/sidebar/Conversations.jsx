@@ -15,8 +15,8 @@ const Conversations = () => {
         />
       ))}
       
-      {loading ? <div className="flex justify-center py-6"><span className="loading loading-spinner loading-sm text-cyan-300" /></div> : null}
-      {!loading && conversations.length === 0 && <p className="px-2 py-6 text-center text-sm text-slate-500">No conversations yet</p>}
+      {loading ? <div className="flex justify-center py-6"><span className="loading loading-spinner loading-sm text-[#565449]" /></div> : null}
+      {!loading && conversations.length === 0 && <p className="px-2 py-6 text-center text-sm text-[#8e8b7e]">No conversations yet</p>}
     </div>
   )
 }

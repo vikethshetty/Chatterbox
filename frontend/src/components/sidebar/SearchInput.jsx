@@ -31,12 +31,15 @@ const SearchInput = () => {
   
   return (
     <form onSubmit={handleSubmit} className="flex items-center gap-2">
-        <input type="text" aria-label="Search conversations" placeholder="Search people" className="h-11 min-w-0 flex-1 rounded-xl border border-white/10 bg-slate-900/80 px-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/70 focus:ring-2 focus:ring-cyan-400/15" 
+        <label className="relative min-w-0 flex-1">
+        <IoSearchSharp aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8e8b7e]" />
+        <input type="text" aria-label="Search conversations" placeholder="Find a person" className="h-10 w-full rounded-[10px] border border-[#c9c1b1] bg-[#FFFBF4] pl-9 pr-3 text-[13px] text-[#11120D] outline-none transition placeholder:text-[#999587] focus:border-[#565449] focus:ring-2 focus:ring-[#565449]/10" 
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button type="submit" aria-label="Search" className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 text-white shadow-lg shadow-blue-950/30 transition hover:brightness-110">
-        <IoSearchSharp className="h-5 w-5 outline-none"/>
+        </label>
+        <button type="submit" aria-label="Search" className="grid h-10 w-10 shrink-0 place-items-center rounded-[10px] border border-[#c9c1b1] bg-[#ece6d8] text-[#565449] transition hover:bg-[#e4dccb]">
+        <IoSearchSharp className="h-4 w-4 outline-none"/>
         </button>
     </form>
   );

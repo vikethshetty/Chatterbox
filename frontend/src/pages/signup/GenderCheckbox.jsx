@@ -1,27 +1,27 @@
 const GenderCheckbox = ({ onCheckboxChange, selectedGender }) => (
   <fieldset>
-    <legend className="mb-1.5 text-xs font-semibold tracking-wide text-slate-300">GENDER</legend>
-    <div className="flex gap-3">
-      {["male", "female"].map((gender) => (
-        <label
-          key={gender}
-          className={`flex min-h-11 flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm capitalize transition ${
-            selectedGender === gender
-              ? "border-cyan-300/50 bg-cyan-300/10 text-white shadow-[inset_0_0_0_1px_rgba(103,232,249,0.08)]"
-              : "border-white/10 bg-slate-900/70 text-slate-300 hover:border-white/25"
-          }`}
-        >
-          <input
-            type="radio"
-            name="gender"
-            value={gender}
-            className="h-4 w-4 accent-cyan-400"
-            checked={selectedGender === gender}
-            onChange={() => onCheckboxChange(gender)}
-          />
-          {gender}
-        </label>
-      ))}
+    <legend className="auth-label">Gender</legend>
+    <div className="grid grid-cols-2 gap-3">
+      {["male", "female"].map((gender) => {
+        const selected = selectedGender === gender;
+        return (
+          <label
+            key={gender}
+            className={`flex min-h-[46px] cursor-pointer items-center gap-2.5 rounded-[10px] border px-3.5 text-sm capitalize transition ${selected ? "border-[#565449] bg-[#ece6d8] text-[#11120D]" : "border-[#c9c1b1] bg-[#FFFBF4] text-[#565449] hover:border-[#8e8b7e]"}`}
+          >
+            <input
+              type="radio"
+              name="gender"
+              value={gender}
+              className="h-4 w-4 accent-[#565449]"
+              checked={selected}
+              onChange={() => onCheckboxChange(gender)}
+              required
+            />
+            {gender}
+          </label>
+        );
+      })}
     </div>
   </fieldset>
 );

@@ -1,6 +1,7 @@
 import { BiLogOut } from "react-icons/bi";
 import useLogout from "../../hooks/useLogout";
 import { useAuthContext } from "../../context/AuthContext";
+import ProfileAvatar from "../ProfileAvatar";
 
 
 const LogoutButton = () => {
@@ -9,17 +10,17 @@ const LogoutButton = () => {
   const {authUser} = useAuthContext();
   
   return (
-    <div className="mt-3 border-t border-white/10 pt-4">
+    <div className="mt-3 border-t border-[#e5ddce] pt-3">
       {!loading ? (
-        <button type="button" onClick={logout} className="flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left text-sm text-slate-400 transition hover:bg-white/[0.06] hover:text-white" aria-label="Log out">
-          <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-full bg-slate-800 ring-1 ring-white/10">
-            <span className="text-sm font-semibold text-white">{authUser?.fullName?.charAt(0)?.toUpperCase()}</span>
+        <button type="button" onClick={logout} className="flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left text-sm text-[#777466] transition hover:bg-[#f3eee4] hover:text-[#11120D]" aria-label="Log out">
+          <span className="block h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#e5ddce]">
+            <ProfileAvatar profilePic={authUser?.profilePic} gender={authUser?.gender} alt="Your avatar" className="h-full w-full object-cover" />
           </span>
-          <span className="min-w-0 flex-1 truncate font-medium text-slate-200">{authUser?.fullName}</span>
+          <span className="min-w-0 flex-1 truncate font-medium text-[#343329]">{authUser?.fullName}</span>
           <BiLogOut className="h-5 w-5 shrink-0" />
         </button>
       ) : (
-        <div className="flex justify-center"><span className="loading loading-spinner loading-sm text-cyan-300" /></div>
+        <div className="flex justify-center"><span className="loading loading-spinner loading-sm text-[#565449]" /></div>
       )}
     </div>
   )

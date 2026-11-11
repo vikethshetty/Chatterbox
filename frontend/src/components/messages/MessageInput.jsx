@@ -39,7 +39,7 @@ const MessageInput = () => {
               emojiButtonSize={28}
               onEmojiSelect={addEmoji}
               maxFrequentRows={0}
-              theme="dark"
+              theme="light"
             />
           </div>
         )}
@@ -50,21 +50,21 @@ const MessageInput = () => {
               aria-label="Choose emoji"
               aria-expanded={showEmoji}
               onClick={() => setShowEmoji((isOpen) => !isOpen)}
-              className="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-cyan-200"
+              className="grid h-9 w-9 place-items-center rounded-lg text-[#8e8b7e] transition hover:bg-[#ece6d8] hover:text-[#565449]"
             >
               <BsEmojiSmile />
             </button>
-            <label className="grid h-9 w-9 cursor-pointer place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-cyan-200" aria-label="Attach a file">
+            <label className="grid h-9 w-9 cursor-pointer place-items-center rounded-lg text-[#8e8b7e] transition hover:bg-[#ece6d8] hover:text-[#565449]" aria-label="Attach a file">
               <input type="file" id="file" className="hidden" onChange={(e) => sendFile(e.target.files)} />
               <GrAttachment />
             </label>
-            <button type="submit" className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 text-slate-950 transition hover:brightness-110 disabled:opacity-50" aria-label="Send message" disabled={loading || !message.trim()}>
+            <button type="submit" className="grid h-9 w-9 place-items-center rounded-lg bg-[#11120D] text-[#FFFBF4] transition hover:bg-[#565449] disabled:cursor-not-allowed disabled:opacity-40" aria-label="Send message" disabled={loading || !message.trim()}>
               {loading ? <span className="loading loading-spinner loading-xs" /> : <BsSend />}
             </button>
           </div>
           <input
             type="text"
-            className="block h-12 w-full rounded-2xl border border-white/10 bg-slate-900/85 py-2.5 pl-4 pr-32 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/10"
+            className="block h-12 w-full rounded-xl border border-[#c9c1b1] bg-[#FFFBF4] py-2.5 pl-4 pr-32 text-sm text-[#11120D] outline-none transition placeholder:text-[#999587] focus:border-[#565449] focus:ring-2 focus:ring-[#565449]/10"
             placeholder="Write a message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
