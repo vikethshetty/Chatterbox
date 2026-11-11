@@ -34,11 +34,14 @@ const ChatHeader = ({ conversation, onBack }) => {
       </button>
       <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#e5ddce]">
         <ProfileAvatar profilePic={conversation.profilePic} gender={conversation.gender} alt={`${conversation.fullName}'s avatar`} className="h-full w-full object-cover" />
-        <span className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-[#FFFBF4] ${isOnline ? "bg-[#565449]" : "bg-[#b4ad9e]"}`} />
+        <span className={`absolute bottom-0 right-0 h-4 w-4 rounded-full border-[3px] border-[#FFFBF4] ${isOnline ? "bg-[#565449] ring-1 ring-[#565449]/30" : "bg-[#b4ad9e]"}`} />
       </span>
       <div className="min-w-0">
         <h2 className="truncate text-sm font-semibold text-[#11120D]">{conversation.fullName}</h2>
-        <p className="mt-0.5 text-xs text-[#777466]">{isOnline ? "Online" : "Offline"}</p>
+        <p className={`mt-1 inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-semibold leading-4 ${isOnline ? "bg-[#565449] text-[#FFFBF4]" : "bg-[#ece6d8] text-[#777466]"}`}>
+          <span className={`h-1.5 w-1.5 rounded-full ${isOnline ? "bg-[#FFFBF4]" : "bg-[#8e8b7e]"}`} />
+          {isOnline ? "Online" : "Offline"}
+        </p>
       </div>
     </header>
   );
