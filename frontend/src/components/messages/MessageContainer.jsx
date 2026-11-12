@@ -13,7 +13,7 @@ const MessageContainer = ({ className = "" }) => {
   useEffect(() => () => setSelectedConversation(null), [setSelectedConversation]);
 
   return (
-    <section className={`min-w-0 flex-1 flex-col bg-[#D8CFBC] ${className}`}>
+    <section className={`min-h-0 min-w-0 flex-1 flex-col bg-[#D8CFBC] ${className}`}>
       {!selectedConversation ? <NoChatSelected /> : <>
         <ChatHeader conversation={selectedConversation} onBack={() => setSelectedConversation(null)} />
         <Messages />
